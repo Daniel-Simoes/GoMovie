@@ -15,15 +15,15 @@ git clone https://github.com/Daniel-Simoes/GoMovie
 
 2 - Open the project with a IDE
 
-3 - This application use a open movie Database (OMDb RESTful). Go to:
+3 - This application use a open movie Database (OMDb RESTful). Go to the website bellow and Get the API Key:
 
 ```bash
 http://www.omdbapi.com/
 ```
-4 - Get API Key and put in main file:
+4 - Put the API Key in main file:
 
 ```bash
-http://www.omdbapi.com/?t=' + title + 'PUT HERE YOUR API KEY' + '&type=movie'
+http://www.omdbapi.com/?t=' + title + 'PUT OVERHERE YOUR API KEY' + '&type=movie'
 ```
 
 5 - Run code
