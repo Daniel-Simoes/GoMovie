@@ -16,6 +16,8 @@ def user_request(title):
 def show_details(movie):
     print('Title:', movie['Title'])
     print('Year:', movie['Year'])
+    print('Genre:', movie['Genre'])
+    print('Plot:', movie['Plot'])
     print('Director:', movie['Director'])
     print('Actors:', movie['Actors'])
     print('Rating:', movie['imdbRating'])
