@@ -5,7 +5,7 @@ import json
 def user_request(title):
     try:
         req = requests.get(
-            'http://www.omdbapi.com/?t=' + title + 'YOUR API KEY')
+            'http://www.omdbapi.com/?t=' + title + 'YOUR API KEY' + '&type=movie')
         movie_list = json.loads(req.text)
         return movie_list
     except:
@@ -19,13 +19,15 @@ def show_details(movie):
     print('Director:', movie['Director'])
     print('Actors:', movie['Actors'])
     print('Rating:', movie['imdbRating'])
+    print('Awards:', movie['Awards'])
+    print('Folder:', movie['Poster'])
     print('')
 
 
 sign_out = False
 while not sign_out:
     title_input = input(
-        'Type a movie title to find the informations or OUT to exit the application: ')
+        'Type a movie title to find the movie informations or OUT to exit the application: ')
     if title_input == 'OUT':
         sign_out = True
         print('we hope to have helped your research')
