@@ -68,7 +68,7 @@ a {
   & + a {
     margin-top: 16px;
   }
-  
+
   div{
     margin-left: 30px;
 
