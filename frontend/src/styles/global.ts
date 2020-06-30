@@ -11,7 +11,7 @@ export default createGlobalStyle`
 }
 
 body {
-  background: #F0F0F9 url(${image}) no-repeat 70% top;
+  background: #F0F0F9 url(${image}) no-repeat 90% top;
 }
 
 #root {
