@@ -1,16 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 // import { FiChevronRight } from 'react-icons/fi';
-import api from '../../services/api';
+import api from "../../services/api";
 
 import Logo from "../../assets/logo.png";
 import { Title, Form, Movie } from "./styles";
 
+interface Film {
+    Poster:string;
+    Title:string;
+    Year:string;
+    Genre:string;
+    Plot:string;
+    Director:string;
+    Actors:string;
+    imdbRating:string;
+    Awards:string;
+}
+
 const Dashboard: React.FC = () => {
-  const [newMovies, setNewMovies] = useState('');
-  const [movies, setMovies] = useState([]);
+  const [newMovie, setNewMovie] = useState('');
+  const [movies, setMovies] = useState<Film[]>([]);
 
-   function handleAddMovies() {
+   async function handleAddMovie(event: FormEvent<HTMLFormElement>) {
+     event.preventDefault();
 
+     const response = await api.get<Film>(`http://www.omdbapi.com/?t=${newMovie}&apikey=79174ddd&type=movie`);
+     console.log(response.data);
+
+     const film = response.data ;
+
+     setMovies([film]);
    }
 
   return (
@@ -18,41 +37,33 @@ const Dashboard: React.FC = () => {
       <img src={Logo} alt="GoMovie" />
       <Title>Find information about Films</Title>
 
-      <Form>
+      <Form onSubmit={handleAddMovie}>
         <input
-          value={newMovies}
-          onChange={(e) => setNewMovies(e.target.value)}
+          value={newMovie}
+          onChange={(e) => setNewMovie(e.target.value)}
           placeholder="Type a movie name..."
         />
         <button type="submit"> Enter</button>
       </Form>
       <Movie>
-        <a href="test">
-          <img src="http://www.omdbapi.com/src/poster.jpg" alt="filme"/>
+        {movies.map(film => (
+          <a
+         key={film.Title} href="test">
+          <img src={film.Poster} alt="filme"/>
           <div>
-            <strong>Blade Runner 2049</strong>
-            <p>2017</p>
-            <p>ficção científica</p>
-            <p>
-              Decorridos trinta anos após o filme original, a trama acompanha os
-              passos de K, um replicante (humano sintético criado por
-              bioengenharia) que trabalha como Blade Runner para a polícia de
-              Los Angeles. Após descobrir um inacreditável segredo com o
-              potencial de mergulhar no caos o que resta da sociedade, o qual
-              também mexe com sua razão de ser e existir, K recebe uma missão
-              secreta que aparenta estar ligada a Rick Deckard, um antigo Blade
-              Runner desaparecido há 30 anos.
-            </p>
-            <p>Denis Villeneuve</p>
-            <p>
-              Ryan Gosling, Harrison Ford, Ana de Armas, Sylvia Hoeks, Robin
-              Wright, Mackenzie Davis
-            </p>
-            <p>8.7</p>
-            <p>2 Oscars</p>
+            <strong>{film.Title}</strong>
+            <p>{film.Year}</p>
+            <br/>
+            <p><span>Genre:</span>{film.Genre}</p>
+            <p><span>Plot:</span>{film.Plot}</p>
+            <p><span>Director:</span>{film.Director}</p>
+            <p><span>Actors:</span>{film.Actors}</p>
+            <p><span>Rating:</span>{film.imdbRating}</p>
+            <p><span>Awards:</span>{film.Awards}</p>
             <button type="submit"> Enter</button>
           </div>
         </a>
+        ))}
       </Movie>
     </>
   );

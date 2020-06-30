@@ -62,7 +62,7 @@ a {
   transition: transform 0.5s;
 
   &:hover {
-    background: ${shade(0.02, '#FFF')};
+    background: ${shade(0.01, '#FFF')};
   }
 
   & + a {
@@ -86,7 +86,12 @@ a {
     margin-left: auto;
     color: #cbcbd6;
   }
-
+span{
+  font-size: 18px;
+      color: #3D3D4D;
+      margin-top: 6px;
+      font-weight: bold;
+}
 }
 button {
     width: 150px;
