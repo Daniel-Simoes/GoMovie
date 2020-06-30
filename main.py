@@ -5,7 +5,7 @@ import json
 def user_request(title):
     try:
         req = requests.get(
-            'http://www.omdbapi.com/?t=' + title + 'YOUR API KEY' + '&type=movie')
+            'http://www.omdbapi.com/?t=' + title + '&apikey=79174ddd' + '&type=movie')
         movie_list = json.loads(req.text)
         return movie_list
     except:
