@@ -45,12 +45,18 @@ button {
 }
 `;
 
+export const Error = styled.span`
+  display: block;
+  color: #d13330;
+  margin-top: 8px;
+`;
+
 export const Movie = styled.div`
 margin-top: 50px;
 max-width: 1500px;
 
 a {
-  background: #FFF;
+  background: #FFF525;
   border-radius: 5px;
   width: 100%;
   padding: 24px;
@@ -70,10 +76,11 @@ a {
   }
 
   div{
+    max-width: 65%;
     margin-left: 30px;
-
+    background: red;
     strong {
-      font-size: 20px;
+      font-size: 30px;
       color: #3D3D4D;
     }
     p {
@@ -81,19 +88,13 @@ a {
       color: #A8A8B3;
       margin-top: 4px;
     }
-  }
-  svg {
-    margin-left: auto;
-    color: #cbcbd6;
-  }
-span{
-  font-size: 18px;
-      color: #3D3D4D;
+    span{
+      font-size: 18px;
+      color: #3A3A3A;
       margin-top: 6px;
       font-weight: bold;
-}
-}
-button {
+    }
+    button {
     width: 150px;
     height: 50px;
     background: #d13330;
@@ -108,5 +109,10 @@ button {
       background: ${shade(0.2, '#d13330')};
     }
   }
+  }
+
+
+}
+
 
 `;

@@ -3,7 +3,7 @@ import React, { useState, FormEvent } from "react";
 import api from "../../services/api";
 
 import Logo from "../../assets/logo.png";
-import { Title, Form, Movie } from "./styles";
+import { Title, Form, Movie, Error } from "./styles";
 
 interface Film {
     Poster:string;
@@ -19,18 +19,28 @@ interface Film {
 
 const Dashboard: React.FC = () => {
   const [newMovie, setNewMovie] = useState('');
+  const [inputError, setInputError] = useState('');
   const [movies, setMovies] = useState<Film[]>([]);
 
-   async function handleAddMovie(event: FormEvent<HTMLFormElement>) {
-     event.preventDefault();
+  async function handleAddMovie(event: FormEvent<HTMLFormElement>): Promise<void> {
+    event.preventDefault();
 
-     const response = await api.get<Film>(`http://www.omdbapi.com/?t=${newMovie}&apikey=79174ddd&type=movie`);
-     console.log(response.data);
+    if (!newMovie) {
+      setInputError('Type a title of movie to find the information about it.');
+      return;
+    }
 
-     const film = response.data ;
+    try {
+      const response = await api.get<Film>(`http://www.omdbapi.com/?t=${newMovie}&apikey=79174ddd&type=movie`);
 
-     setMovies([film]);
-   }
+      const film = response.data ;
+
+      setMovies([film]);
+      setInputError('');
+    } catch (err) {
+      setInputError('Are you sure about the name of movie, please try again!');
+    }
+  }
 
   return (
     <>
@@ -45,6 +55,9 @@ const Dashboard: React.FC = () => {
         />
         <button type="submit"> Enter</button>
       </Form>
+
+      {inputError && <Error>{inputError}</Error>}
+
       <Movie>
         {movies.map(film => (
           <a
@@ -54,14 +67,15 @@ const Dashboard: React.FC = () => {
             <strong>{film.Title}</strong>
             <p>{film.Year}</p>
             <br/>
-            <p><span>Genre:</span>{film.Genre}</p>
-            <p><span>Plot:</span>{film.Plot}</p>
-            <p><span>Director:</span>{film.Director}</p>
-            <p><span>Actors:</span>{film.Actors}</p>
-            <p><span>Rating:</span>{film.imdbRating}</p>
-            <p><span>Awards:</span>{film.Awards}</p>
+            <p><span>Genre: </span>{film.Genre}</p>
+            <p><span>Plot: </span>{film.Plot}</p>
+            <p><span>Director: </span>{film.Director}</p>
+            <p><span>Actors: </span>{film.Actors}</p>
+            <p><span>Rating: </span>{film.imdbRating}</p>
+            <p><span>Awards: </span>{film.Awards}</p>
             <button type="submit"> Enter</button>
           </div>
+
         </a>
         ))}
       </Movie>
