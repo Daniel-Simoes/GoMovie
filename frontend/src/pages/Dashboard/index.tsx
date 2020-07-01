@@ -63,19 +63,20 @@ const Dashboard: React.FC = () => {
           <a
          key={film.Title} href="test">
           <img src={film.Poster} alt="filme"/>
-          <div>
-            <strong>{film.Title}</strong>
-            <p>{film.Year}</p>
-            <br/>
-            <p><span>Genre: </span>{film.Genre}</p>
-            <p><span>Plot: </span>{film.Plot}</p>
-            <p><span>Director: </span>{film.Director}</p>
-            <p><span>Actors: </span>{film.Actors}</p>
-            <p><span>Rating: </span>{film.imdbRating}</p>
-            <p><span>Awards: </span>{film.Awards}</p>
-            <button type="submit"> Enter</button>
+          <div id='test'>
+            <div>
+              <strong>{film.Title}</strong>
+              <p>{film.Year}</p>
+              <br/>
+              <p><span>Genre: </span>{film.Genre}</p>
+              <p><span>Plot: </span>{film.Plot}</p>
+              <p><span>Director: </span>{film.Director}</p>
+              <p><span>Actors: </span>{film.Actors}</p>
+              <p><span>Rating: </span>{film.imdbRating}</p>
+              <p><span>Awards: </span>{film.Awards}</p>
+            </div>
+            <button type="submit"> More information</button>
           </div>
-
         </a>
         ))}
       </Movie>

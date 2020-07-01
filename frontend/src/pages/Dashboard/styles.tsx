@@ -56,13 +56,12 @@ margin-top: 50px;
 max-width: 1500px;
 
 a {
-  background: #FFF525;
   border-radius: 5px;
   width: 100%;
   padding: 24px;
   display: block;
   text-decoration: none;
-
+  background: #FFF;
   display: flex;
   align-items: center;
   transition: transform 0.5s;
@@ -75,18 +74,28 @@ a {
     margin-top: 16px;
   }
 
+  #test {
+    margin:0;
+  padding:0;
+  outline:0;
+  max-width:65%;
+  box-sizing: border-box;
+
+  }
+
   div{
-    max-width: 65%;
+
     margin-left: 30px;
-    background: red;
+
     strong {
-      font-size: 30px;
+      font-size: 40px;
       color: #3D3D4D;
     }
     p {
       font-size: 18px;
       color: #A8A8B3;
       margin-top: 4px;
+      text-align: justify;
     }
     span{
       font-size: 18px;
@@ -95,12 +104,14 @@ a {
       font-weight: bold;
     }
     button {
+    font-size: 14px;
     width: 150px;
     height: 50px;
+    margin-top: 8px;
     background: #d13330;
     border-radius: 5px 5px 5px 5px;
     border: 0;
-    margin-left: 500px;
+    margin-left: 400px;
     color: #FFF;
     font-weight: bold;
     transition: background-color 0.2s;
